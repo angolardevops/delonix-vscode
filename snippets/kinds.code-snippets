@@ -1,0 +1,178 @@
+{
+  "Delonix: Gateway": {
+    "prefix": [
+      "delonix-gateways",
+      "dlxgateway"
+    ],
+    "scope": "yaml",
+    "description": "Gateway (gateway.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: gateway.delonix.io/v1alpha1",
+      "kind: Gateway",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: HTTPRoute": {
+    "prefix": [
+      "delonix-httproutes",
+      "dlxhttproute"
+    ],
+    "scope": "yaml",
+    "description": "HTTPRoute (gateway.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: gateway.delonix.io/v1alpha1",
+      "kind: HTTPRoute",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: Image": {
+    "prefix": [
+      "delonix-images",
+      "dlximage"
+    ],
+    "scope": "yaml",
+    "description": "Image (artifact.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: artifact.delonix.io/v1alpha1",
+      "kind: Image",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: KubernetesCluster": {
+    "prefix": [
+      "delonix-kubernetesclusters",
+      "dlxkubernetescluster"
+    ],
+    "scope": "yaml",
+    "description": "KubernetesCluster (infrastructure.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: infrastructure.delonix.io/v1alpha1",
+      "kind: KubernetesCluster",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: Network": {
+    "prefix": [
+      "delonix-networks",
+      "dlxnetwork"
+    ],
+    "scope": "yaml",
+    "description": "Network (networking.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: networking.delonix.io/v1alpha1",
+      "kind: Network",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: NetworkPolicy": {
+    "prefix": [
+      "delonix-networkpolicies",
+      "dlxnetworkpolicy"
+    ],
+    "scope": "yaml",
+    "description": "NetworkPolicy (networking.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: networking.delonix.io/v1alpha1",
+      "kind: NetworkPolicy",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: NetworkRoute": {
+    "prefix": [
+      "delonix-networkroutes",
+      "dlxnetworkroute"
+    ],
+    "scope": "yaml",
+    "description": "NetworkRoute (networking.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: networking.delonix.io/v1alpha1",
+      "kind: NetworkRoute",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: Pod": {
+    "prefix": [
+      "delonix-pods",
+      "dlxpod"
+    ],
+    "scope": "yaml",
+    "description": "Pod (compute.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: compute.delonix.io/v1alpha1",
+      "kind: Pod",
+      "metadata:",
+      "  name: ${1:nome}\n  namespace: ${2:default}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: Secret": {
+    "prefix": [
+      "delonix-secrets",
+      "dlxsecret"
+    ],
+    "scope": "yaml",
+    "description": "Secret (core.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: core.delonix.io/v1alpha1",
+      "kind: Secret",
+      "metadata:",
+      "  name: ${1:nome}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: VirtualMachine": {
+    "prefix": [
+      "delonix-virtualmachines",
+      "dlxvirtualmachine"
+    ],
+    "scope": "yaml",
+    "description": "VirtualMachine (compute.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: compute.delonix.io/v1alpha1",
+      "kind: VirtualMachine",
+      "metadata:",
+      "  name: ${1:nome}\n  namespace: ${2:default}",
+      "spec:",
+      "  $0"
+    ]
+  },
+  "Delonix: Volume": {
+    "prefix": [
+      "delonix-volumes",
+      "dlxvolume"
+    ],
+    "scope": "yaml",
+    "description": "Volume (storage.delonix.io/v1alpha1)",
+    "body": [
+      "apiVersion: storage.delonix.io/v1alpha1",
+      "kind: Volume",
+      "metadata:",
+      "  name: ${1:nome}\n  namespace: ${2:default}",
+      "spec:",
+      "  $0"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+name: Release
+
+# The `.vsix` is what an offline or gallery-less host installs by hand, so it is
+# attached to every tag. Publishing to the two galleries needs a credential the
+# workflow cannot invent: set VSCE_PAT (Visual Studio Marketplace) and OVSX_PAT
+# (Open VSX) as repository secrets. Missing either one SKIPS that gallery and
+# says so — a release with the artefact and no gallery is still a usable release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      - name: Package
+        run: |
+          npm install -g @vscode/vsce ovsx
+          vsce package --out "delonix-${GITHUB_REF_NAME#v}.vsix"
+          sha256sum *.vsix > SHA256SUMS
+
+      - name: Attach to the release
+        run: |
+          gh release create "$GITHUB_REF_NAME" *.vsix SHA256SUMS \
+            --title "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Visual Studio Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        if: ${{ env.VSCE_PAT != '' }}
+        run: vsce publish --packagePath *.vsix -p "$VSCE_PAT"
+
+      - name: Open VSX
+        # VSCodium, Cursor and Windsurf resolve extensions from Open VSX, not
+        # from the Microsoft gallery. Publishing to only one leaves most of the
+        # forks this extension supports unable to find it by ID.
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        if: ${{ env.OVSX_PAT != '' }}
+        run: ovsx publish *.vsix -p "$OVSX_PAT"

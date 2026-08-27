@@ -1,0 +1,97 @@
+{
+  "name": "delonix",
+  "displayName": "%ext.displayName%",
+  "description": "%ext.description%",
+  "version": "0.1.0",
+  "publisher": "angolardevops",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angolardevops/delonix-vscode.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "delonix",
+    "container",
+    "microvm",
+    "rootless",
+    "manifest"
+  ],
+  "extensionDependencies": [
+    "redhat.vscode-yaml"
+  ],
+  "contributes": {
+    "yamlValidation": [
+      {
+        "fileMatch": [
+          "delonix-manifest.yaml",
+          "delonix-manifest.yml",
+          "*.delonix.yaml",
+          "*.delonix.yml",
+          "delonix/*.yaml",
+          "delonix/*.yml"
+        ],
+        "url": "https://angolardevops.github.io/delonix-runtime/schema/v1/delonix.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "yaml",
+        "path": "./snippets/kinds.code-snippets"
+      }
+    ],
+    "configuration": {
+      "title": "Delonix",
+      "properties": {
+        "delonix.path": {
+          "type": "string",
+          "default": "delonix",
+          "description": "%config.path%"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "vmfile",
+        "aliases": [
+          "VMfile",
+          "vmfile"
+        ],
+        "filenames": [
+          "VMfile"
+        ],
+        "filenamePatterns": [
+          "VMfile.*",
+          "*.VMfile",
+          "*.vmfile"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "dockerfile",
+        "aliases": [],
+        "filenames": [
+          "Delonixfile"
+        ],
+        "filenamePatterns": [
+          "Delonixfile.*",
+          "*.Delonixfile"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vmfile",
+        "scopeName": "source.vmfile",
+        "path": "./syntaxes/vmfile.tmLanguage.json"
+      }
+    ]
+  }
+}

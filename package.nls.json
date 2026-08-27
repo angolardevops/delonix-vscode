@@ -1,0 +1,5 @@
+{
+  "ext.displayName": "Delonix",
+  "ext.description": "Delonix Engine manifests: validation, completion and per-Kind templates.",
+  "config.path": "Path to the `delonix` binary."
+}

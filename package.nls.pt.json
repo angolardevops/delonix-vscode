@@ -1,0 +1,5 @@
+{
+  "ext.displayName": "Delonix",
+  "ext.description": "Manifestos do Delonix Engine: validação, autocomplete e templates por Kind.",
+  "config.path": "Caminho do binário `delonix`."
+}
