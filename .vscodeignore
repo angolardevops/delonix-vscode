@@ -1,4 +1,5 @@
-.vscode/**
-scripts/**
 .git/**
+.github/**
 .gitignore
+scripts/**
+.vscode/**
