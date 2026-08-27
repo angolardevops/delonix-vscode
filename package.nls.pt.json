@@ -1,5 +1,18 @@
 {
   "ext.displayName": "Delonix",
   "ext.description": "Manifestos do Delonix Engine: validação, autocomplete e templates por Kind.",
-  "config.path": "Caminho do binário `delonix`."
+  "config.path": "Caminho do binário `delonix`.",
+  "config.autoRefresh": "Segundos entre actualizações automáticas da árvore de recursos. 0 (o valor por omissão) quer dizer que a árvore só actualiza quando lhe pedes, e depois de um comando que esta extensão correu. O motor é daemonless — não há stream de eventos a que subscrever — por isso qualquer valor acima de 0 é sondagem, não estado ao vivo.",
+  "view.resources": "Recursos",
+  "cmd.refresh": "Actualizar",
+  "cmd.start": "Arrancar",
+  "cmd.stop": "Parar",
+  "cmd.restart": "Reiniciar",
+  "cmd.logs": "Seguir os logs",
+  "cmd.exec": "Abrir shell",
+  "cmd.console": "Abrir consola",
+  "cmd.describe": "Descrever",
+  "cmd.remove": "Remover…",
+  "cmd.apply": "Stack apply",
+  "cmd.plan": "Stack plan"
 }

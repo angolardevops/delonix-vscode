@@ -2,7 +2,7 @@
   "name": "delonix",
   "displayName": "%ext.displayName%",
   "description": "%ext.description%",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "angolardevops",
   "license": "Apache-2.0",
   "repository": {
@@ -54,6 +54,13 @@
           "type": "string",
           "default": "delonix",
           "description": "%config.path%"
+        },
+        "delonix.autoRefresh": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 3600,
+          "description": "%config.autoRefresh%"
         }
       }
     },
@@ -92,6 +99,165 @@
         "scopeName": "source.vmfile",
         "path": "./syntaxes/vmfile.tmLanguage.json"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "delonix",
+          "title": "Delonix",
+          "icon": "media/delonix.svg"
+        }
+      ]
+    },
+    "views": {
+      "delonix": [
+        {
+          "id": "delonixResources",
+          "name": "%view.resources%"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "delonix.refresh",
+        "title": "%cmd.refresh%",
+        "category": "Delonix",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "delonix.start",
+        "title": "%cmd.start%",
+        "category": "Delonix",
+        "icon": "$(play)"
+      },
+      {
+        "command": "delonix.stop",
+        "title": "%cmd.stop%",
+        "category": "Delonix",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "delonix.restart",
+        "title": "%cmd.restart%",
+        "category": "Delonix",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "delonix.logs",
+        "title": "%cmd.logs%",
+        "category": "Delonix",
+        "icon": "$(output)"
+      },
+      {
+        "command": "delonix.exec",
+        "title": "%cmd.exec%",
+        "category": "Delonix",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "delonix.console",
+        "title": "%cmd.console%",
+        "category": "Delonix",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "delonix.describe",
+        "title": "%cmd.describe%",
+        "category": "Delonix",
+        "icon": "$(info)"
+      },
+      {
+        "command": "delonix.remove",
+        "title": "%cmd.remove%",
+        "category": "Delonix",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "delonix.apply",
+        "title": "%cmd.apply%",
+        "category": "Delonix"
+      },
+      {
+        "command": "delonix.plan",
+        "title": "%cmd.plan%",
+        "category": "Delonix"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "delonix.refresh",
+          "when": "view == delonixResources",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "delonix.start",
+          "when": "view == delonixResources && viewItem =~ /^(container|vm)\\.stopped$/",
+          "group": "inline"
+        },
+        {
+          "command": "delonix.stop",
+          "when": "view == delonixResources && viewItem =~ /^(container|vm)\\.running$/",
+          "group": "inline"
+        },
+        {
+          "command": "delonix.exec",
+          "when": "view == delonixResources && viewItem == container.running",
+          "group": "inline"
+        },
+        {
+          "command": "delonix.console",
+          "when": "view == delonixResources && viewItem == vm.running",
+          "group": "inline"
+        },
+        {
+          "command": "delonix.logs",
+          "when": "view == delonixResources && viewItem =~ /^(container|pod)\\./",
+          "group": "inline"
+        },
+        {
+          "command": "delonix.restart",
+          "when": "view == delonixResources && viewItem =~ /^(container|vm)\\./",
+          "group": "1@1"
+        },
+        {
+          "command": "delonix.describe",
+          "when": "view == delonixResources && viewItem != ''",
+          "group": "1@2"
+        },
+        {
+          "command": "delonix.remove",
+          "when": "view == delonixResources && viewItem != ''",
+          "group": "9@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "delonix.plan",
+          "when": "resourceFilename =~ /delonix-manifest\\.ya?ml$|\\.delonix\\.ya?ml$/",
+          "group": "navigation@1"
+        },
+        {
+          "command": "delonix.apply",
+          "when": "resourceFilename =~ /delonix-manifest\\.ya?ml$|\\.delonix\\.ya?ml$/",
+          "group": "navigation@2"
+        }
+      ]
+    }
+  },
+  "main": "./dist/extension.js",
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "watch": "npm run build -- --sourcemap --watch",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run typecheck && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/vscode": "^1.75.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0"
   }
 }

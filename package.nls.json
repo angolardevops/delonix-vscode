@@ -1,5 +1,18 @@
 {
   "ext.displayName": "Delonix",
   "ext.description": "Delonix Engine manifests: validation, completion and per-Kind templates.",
-  "config.path": "Path to the `delonix` binary."
+  "config.path": "Path to the `delonix` binary.",
+  "config.autoRefresh": "Seconds between automatic refreshes of the resource tree. 0 (the default) means the tree refreshes only when you ask it to, and after a command this extension ran. The engine is daemonless — there is no event stream to subscribe to — so any value above 0 is polling, not live state.",
+  "view.resources": "Resources",
+  "cmd.refresh": "Refresh",
+  "cmd.start": "Start",
+  "cmd.stop": "Stop",
+  "cmd.restart": "Restart",
+  "cmd.logs": "Follow logs",
+  "cmd.exec": "Open shell",
+  "cmd.console": "Open console",
+  "cmd.describe": "Describe",
+  "cmd.remove": "Remove…",
+  "cmd.apply": "Stack apply",
+  "cmd.plan": "Stack plan"
 }
