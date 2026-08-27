@@ -21,7 +21,12 @@ jobs:
         with: { node-version: "20" }
 
       - name: Package
+        # `npm ci` before packaging: `vsce package` runs `vscode:prepublish`,
+        # which typechecks and bundles, and both need the local devDependencies.
+        # Without it the step fails on a missing `tsc` — after the checkout has
+        # already succeeded, which reads like a broken repository.
         run: |
+          npm ci
           npm install -g @vscode/vsce ovsx
           vsce package --out "delonix-${GITHUB_REF_NAME#v}.vsix"
           sha256sum *.vsix > SHA256SUMS
